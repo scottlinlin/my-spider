@@ -1,0 +1,5 @@
+requests
+demjson
+pandas
+xlrd
+BeautifulSoup4
