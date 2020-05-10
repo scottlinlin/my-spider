@@ -81,7 +81,7 @@ def etl_to_excel():
                     url = BANK_DETAIL_URL + "&id=" + str(pid).zfill(8)
                     bank_detail_dic = get_bank_detail(url)
                     # 休眠 200 毫秒，反爬虫
-                    time.sleep(1)
+                    # time.sleep(0.3)
                     df.loc[ix, '机构简称'] = bank_detail_dic.get('short_name')
                     df.loc[ix, '邮政编码'] = bank_detail_dic.get('post_code')
                     df.loc[ix, '变更前流水号'] = bank_detail_dic.get('before_pid')
