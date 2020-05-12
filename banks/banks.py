@@ -19,6 +19,7 @@ import random
 ORGAN_URL = "http://xkz.cbirc.gov.cn/ilicence/getOrganInfo.do"
 BANK_URL = "http://xkz.cbirc.gov.cn/ilicence/reportLicence.do?useState=3"
 BANK_FILE_URL= "http://xkz.cbirc.gov.cn/ilicence/reportLicence.do?useState=3"
+# 撤销机构state=7，正常机构state=3
 BANK_DETAIL_URL ="http://xkz.cbirc.gov.cn/ilicence/showLicenceInfo.do?state=7"
 FILE_DIR = r'/Users/linfengming/banks'
 FILE_DIR_ETL = r'/Users/linfengming/banks_etl'

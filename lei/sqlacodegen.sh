@@ -1,0 +1,1 @@
+sqlacodegen mysql+pymysql://wangbo:cipswangbo1@cdb-d8q2dhvq.bj.tencentcdb.com:10115/mytxsql

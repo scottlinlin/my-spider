@@ -3,3 +3,7 @@ demjson
 pandas
 xlrd
 BeautifulSoup4
+sqlalchemy
+sqlacodegen
+PyMySQL
+fishbase
