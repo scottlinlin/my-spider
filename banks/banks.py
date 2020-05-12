@@ -19,7 +19,7 @@ import random
 ORGAN_URL = "http://xkz.cbirc.gov.cn/ilicence/getOrganInfo.do"
 BANK_URL = "http://xkz.cbirc.gov.cn/ilicence/reportLicence.do?useState=3"
 BANK_FILE_URL= "http://xkz.cbirc.gov.cn/ilicence/reportLicence.do?useState=3"
-BANK_DETAIL_URL ="http://xkz.cbirc.gov.cn/ilicence/showLicenceInfo.do?state=3"
+BANK_DETAIL_URL ="http://xkz.cbirc.gov.cn/ilicence/showLicenceInfo.do?state=7"
 FILE_DIR = r'/Users/linfengming/banks'
 FILE_DIR_ETL = r'/Users/linfengming/banks_etl'
 
@@ -81,7 +81,7 @@ def etl_to_excel():
                     url = BANK_DETAIL_URL + "&id=" + str(pid).zfill(8)
                     bank_detail_dic = get_bank_detail(url)
                     # 休眠 200 毫秒，反爬虫
-                    # time.sleep(0.3)
+                    # time.sleep(0.5)
                     df.loc[ix, '机构简称'] = bank_detail_dic.get('short_name')
                     df.loc[ix, '邮政编码'] = bank_detail_dic.get('post_code')
                     df.loc[ix, '变更前流水号'] = bank_detail_dic.get('before_pid')
@@ -141,25 +141,25 @@ def get_bank_detail(url):
 
     # 机构简称
     short_name = ''
-    if len(trs) >= 3:
+    if len(trs) > 3:
         tds = trs[3].findAll('td')
         short_name = tds[1].getText().strip()
 
     # 邮政编码
     post_code = ''
-    if len(trs) >= 8:
+    if len(trs) > 8:
         tds = trs[8].findAll('td')
         post_code = tds[1].getText().strip()
 
     # 变更前流水号
     before_pid = ''
-    if len(trs) >= 15:
+    if len(trs) > 15:
         tds = trs[15].findAll('td')
         before_pid = tds[1].getText().strip()
 
     # 变更前机构编码
     before_id = ''
-    if len(trs) >= 16:
+    if len(trs) > 16:
         tds = trs[16].findAll('td')
         before_id = tds[1].getText().strip()
 
@@ -175,7 +175,7 @@ def get_bank_detail(url):
         tds = trs[18].findAll('td')
         before_address = tds[1].getText().strip()
 
-    return {'short_name': short_name, 'post_code': before_pid, 'before_pid': before_pid,
+    return {'short_name': short_name, 'post_code': post_code, 'before_pid': before_pid,
             'before_id': before_id, 'before_name': before_name, 'before_address': before_address}
 
 
